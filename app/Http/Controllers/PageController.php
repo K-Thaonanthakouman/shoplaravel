@@ -8,7 +8,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        return 'Welcome to Hell !';
+        return redirect()->route('products.show', ['id' => rand(1, 100)]);
     }
 
     public function about()
