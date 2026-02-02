@@ -6,8 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Ceci est un titre !</h1>
-    <p>Ceci est une présentation !</p>
+    <h1>{{ $company['name'] }}</h1>
+    <p>Nombre de produits : {{ $company['nb_produits'] }}</p>
+
+    <p>L'entreprise est-elle ouverte ? 
+        @if($company['ouvert'] == true)
+            oui !
+        @else
+            non !
+        @endif
+    </p>
     
 </body>
 </html>

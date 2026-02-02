@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function show($p1)
+    public function show($id)
     {
-        return 'Détails du produit n°' . $p1 . ' :';
+        $company = [
+            'name' => 'Fourre-Tout Company',
+            'nb_produits' => 3,
+            'ouvert' => false
+        ];
+        return view('blabla', [
+            'company' => $company,
+            'id' => $id
+        ]);
     }
 }
