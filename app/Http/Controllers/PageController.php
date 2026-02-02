@@ -8,7 +8,8 @@ class PageController extends Controller
 {
     public function home()
     {
-        return redirect()->route('products.show', ['id' => rand(1, 100)]);
+        // return redirect()->route('products.show', ['id' => rand(1, 100)]);
+        return view('blabla');
     }
 
     public function about()
