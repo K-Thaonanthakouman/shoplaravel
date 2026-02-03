@@ -19,6 +19,9 @@ Route::get('/home', [PageController::class, 'home'])
 Route::get('/about', [PageController::class, 'about'])
     ->name('about');
 
+Route::get('/contact', [PageController::class, 'contact'])
+    ->name('contact');
+
 
 
 use App\Http\Controllers\ProductController;
@@ -27,7 +30,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
     ->name('products.show');
 
 Route::get('/index', [ProductController::class, 'plage'])
-    ->name('/index');
+    ->name('index');
 
 
 ?>

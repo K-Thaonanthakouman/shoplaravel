@@ -9,13 +9,18 @@ class PageController extends Controller
     public function home()
     {
 
-        return redirect()->route('products.show', ['id' => rand(1, 100)]);
+        return view('home');
 
     }
 
     public function about()
     {
-        return 'Qui qu\'on est ? Quoi qu\'on fait ? D\'où qu\'on est ? Je ne sais pas !';
+        return view('about');
+    }
+
+    public function contact()
+    {
+        return view('contact');
     }
 }
 
