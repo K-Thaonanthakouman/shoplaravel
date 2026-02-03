@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Accueil - ShopLaravel')
-    Quoi qu'on a ?
+@section('title', 'Quoiqu\'on a ?')
+
 @section('content')
     <h1 class="text-3xl font-bold mb-4">Nos produits !</h1>
     <p>
