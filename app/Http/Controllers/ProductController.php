@@ -18,4 +18,18 @@ class ProductController extends Controller
             'id' => $id
         ]);
     }
+
+    public function plage()
+    {
+        $plage = [
+            ['id' => 1, 'name' => 'Transat', 'price' => 80],
+            ['id' => 2, 'name' => 'Cocotier', 'price' => 140],
+            ['id' => 3, 'name' => 'Sable fin', 'price' => 2],
+            ['id' => 4, 'name' => 'Tongs', 'price' => 10],
+            ['id' => 5, 'name' => 'Mer bleu azur', 'price' => 860000]
+        ];
+        return view('index', [
+            'plage' => $plage
+        ]);
+    }
 }
