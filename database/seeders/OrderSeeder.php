@@ -14,19 +14,19 @@ class OrderSeeder extends Seeder
     {
         DB::table('orders')->insert([
             [
-                'user_id' => 8,
+                'user_id' => 1,
                 'total' => 800,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'user_id' => 10,
+                'user_id' => 3,
                 'total' => 3300,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'user_id' => 9,
+                'user_id' => 2,
                 'total' => 80000,
                 'created_at' => now(),
                 'updated_at' => now()
