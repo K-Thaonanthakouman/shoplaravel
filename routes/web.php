@@ -33,4 +33,9 @@ Route::get('/index', [ProductController::class, 'products'])
     ->name('index');
 
 
+
+use App\Http\Controllers\ResourceController;
+
+Route::resource('products', ResourceController::class);
+
 ?>
