@@ -6,14 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>{{ $company['name'] }}</h1>
-    <p>Nombre de produits : {{ $company['nb_produits'] }}</p>
+    <h1>{{ $product->name }}</h1>
+    <p>{{ $product->description }}</p>
 
-    <p>L'entreprise est-elle ouverte ? 
-        @if($company['ouvert'] == true)
-            oui !
+    <p>Ca coûte {{ $product->price }}€.</p>
+
+    <p>Combien qu'on en a ? 
+        @if($product->stock >=50)
+            Beaucoup !
         @else
-            non !
+            Pas beaucoup !
         @endif
     </p>
     

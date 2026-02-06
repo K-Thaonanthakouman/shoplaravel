@@ -8,28 +8,20 @@ class ProductController extends Controller
 {
     public function show($id)
     {
-        $company = [
-            'name' => 'Fourre-Tout Company',
-            'nb_produits' => 3,
-            'ouvert' => false
-        ];
+        $product = \App\Models\Product::find($id);
+
         return view('blabla', [
-            'company' => $company,
+            'product' => $product,
             'id' => $id
         ]);
     }
 
-    public function plage()
+    public function products()
     {
-        $plage = [
-            ['id' => 1, 'name' => 'Transat', 'price' => 80],
-            ['id' => 2, 'name' => 'Cocotier', 'price' => 140],
-            ['id' => 3, 'name' => 'Sable fin', 'price' => 2],
-            ['id' => 4, 'name' => 'Tongs', 'price' => 10],
-            ['id' => 5, 'name' => 'Mer bleu azur', 'price' => 860000]
-        ];
+        $products = \App\Models\Product::all();
+
         return view('index', [
-            'plage' => $plage
+            'products' => $products
         ]);
     }
 }
