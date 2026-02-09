@@ -17,11 +17,17 @@
         </div>
 
         <div class="mb-4">
+            <label for="category_id" class="block font-medium mb-1">Catégorie</label>
+            <input type="text" name="category_id" id="category_id"
+                   value="{{ old('category_id') }}"
+                   class="w-full border rounded px-3 py-2">
+        </div>
+
+        <div class="mb-4">
             <label for="description" class="block font-medium mb-1">Description</label>
             <input type="text" name="description" id="description"
                    value="{{ old('description') }}"
-                   class="w-full border rounded px-3 py-2"
-                   required>
+                   class="w-full border rounded px-3 py-2">
         </div>
 
         <div class="mb-4">
@@ -43,9 +49,8 @@
         <div class="mb-4">
             <label for="active" class="block font-medium mb-1">Disponible</label>
             <input type="checkbox" name="active" id="active"
-                   value="{{ old('active') }}"
-                   class="w-full border rounded px-3 py-2"
-                   required>
+                   value=1
+                   class="w-full border rounded px-3 py-2">
         </div>
 
 
@@ -53,4 +58,5 @@
             Créer le produit
         </button>
     </form>
+
 @endsection

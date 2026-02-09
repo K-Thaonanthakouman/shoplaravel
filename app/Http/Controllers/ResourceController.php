@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ResourceController extends Controller
 {
@@ -28,7 +30,44 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data;
+        if ( ($request->filled('name')) & ($request->filled('category_id')) & ($request->filled('price')) & ($request->filled('stock')) ) {
+            $data = $request->all();
+
+            if ( $request->has('active') ){
+                $data['active'] = true;
+            }
+            else {
+                $data['active'] = false;
+            }
+
+            $slug = Str::slug($data['name']);
+
+            DB::table('products')->insert([
+                [
+                    'category_id' => $data['category_id'],
+                    'name' => $data['name'],
+                    'slug' => $slug,
+                    'description' => $data['description'],
+                    'price' => $data['price'],
+                    'stock' => $data['stock'],
+                    'active' => $data['active'],
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
+            ]);
+            
+            return redirect()->route('index')
+                ->with('success', 'Produit ajouté dans le catalogue !');
+            
+        }
+
+        else{
+            return back()
+                ->withInput()
+                ->with('error', 'Erreur, produit non ajouté.');
+        }
+
     }
 
     /**
