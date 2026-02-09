@@ -12,7 +12,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -20,7 +20,7 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class ResourceController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('product.edit', compact('product'));
     }
 
     /**

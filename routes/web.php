@@ -36,6 +36,6 @@ Route::get('/index', [ProductController::class, 'products'])
 
 use App\Http\Controllers\ResourceController;
 
-Route::resource('products', ResourceController::class);
+Route::resource('product', ResourceController::class);
 
 ?>
