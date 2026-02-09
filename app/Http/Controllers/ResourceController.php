@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ResourceController extends Controller
@@ -43,18 +42,16 @@ class ResourceController extends Controller
 
             $slug = Str::slug($data['name']);
 
-            DB::table('products')->insert([
-                [
-                    'category_id' => $data['category_id'],
-                    'name' => $data['name'],
-                    'slug' => $slug,
-                    'description' => $data['description'],
-                    'price' => $data['price'],
-                    'stock' => $data['stock'],
-                    'active' => $data['active'],
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]
+            $new_product = Product::create([
+                'category_id' => $data['category_id'],
+                'name' => $data['name'],
+                'slug' => $slug,
+                'description' => $data['description'],
+                'price' => $data['price'],
+                'stock' => $data['stock'],
+                'active' => $data['active'],
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
             
             return redirect()->route('index')
@@ -75,7 +72,7 @@ class ResourceController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('blabla', compact('product'));
     }
 
     /**
@@ -91,7 +88,41 @@ class ResourceController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $data;
+        if ( ($request->filled('name')) & ($request->filled('category_id')) & ($request->filled('price')) & ($request->filled('stock')) ) {
+            $data = $request->all();
+
+            if ( $request->has('active') ){
+                $data['active'] = true;
+            }
+            else {
+                $data['active'] = false;
+            }
+
+            $slug = Str::slug($data['name']);
+
+            Product::where('id', $product->id)->update([
+                'category_id' => $data['category_id'],
+                'name' => $data['name'],
+                'slug' => $slug,
+                'description' => $data['description'],
+                'price' => $data['price'],
+                'stock' => $data['stock'],
+                'active' => $data['active'],
+                'updated_at' => now()
+            ]);
+
+            return redirect()->route('index')
+                ->with('success', 'Produit modifié dans le catalogue !');
+            
+        }
+
+        else{
+            return back()
+                ->withInput()
+                ->with('error', 'Erreur dans la modification du produit.');
+        }
+
     }
 
     /**
@@ -99,6 +130,8 @@ class ResourceController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::where('id', $product->id)->delete();
+        return redirect()->route('index')
+            ->with('success', 'Produit supprimé du catalogue !');
     }
 }
