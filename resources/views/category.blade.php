@@ -13,7 +13,7 @@
         @forelse($category->products as $product)
             <p>{{ $product->name }}. {{ $product->description }}</p>
         @empty
-        <p>Y a rien ! </p>
+            <p>Y a rien ! </p>
         @endforelse
 
 
