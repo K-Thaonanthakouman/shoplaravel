@@ -38,4 +38,11 @@ use App\Http\Controllers\ResourceController;
 
 Route::resource('product', ResourceController::class);
 
+
+
+use App\Http\Controllers\CategoryController;
+
+Route::get('/category/{id}', [CategoryController::class, 'show'])
+    ->name('category.show');
+
 ?>
