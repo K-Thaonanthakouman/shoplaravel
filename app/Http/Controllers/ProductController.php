@@ -18,7 +18,7 @@ class ProductController extends Controller
 
     public function products()
     {
-        $products = \App\Models\Product::all();
+        $products = \App\Models\Product::with('category')->get();
 
         return view('index', [
             'products' => $products

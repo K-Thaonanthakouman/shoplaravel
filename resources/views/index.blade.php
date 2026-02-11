@@ -17,7 +17,7 @@
             Dernier produit !
         @endif
         Produit n°{{ $product->id }} : {{ $product->name }}, {{ $product->price }}€. {{ $product->description }}<br/>
-        Il y en a {{ $product->stock }} en stock. (index {{ $loop->index }})
+        Il y en a {{ $product->stock }} en stock. Il appartient à la catégorie {{ $product->category->name }} (index {{ $loop->index }})
         </p>
     @empty
         Aucun élément trouvé.
