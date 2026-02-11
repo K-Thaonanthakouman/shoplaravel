@@ -22,7 +22,9 @@
             <select name="category_id" id="category_id" class="w-full border rounded px-3 py-2">
                 @foreach ($category as $element)
                     <option value="{{ $element->id }}"
-                        {{ old('category_id', $product->category_id) == $element->id ? 'selected' : '' }}>{{$element->name}}</option>
+                        {{ old('category_id', $product->category_id) == $element->id ? 'selected' : '' }}>
+                        {{$element->name}}
+                    </option>
                 @endforeach
         </div>
 
