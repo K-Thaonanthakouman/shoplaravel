@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,7 +22,11 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $category = Category::get();
+
+        return view('product.create', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -29,6 +34,13 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => ['required', 'unique:products', 'max:255'],
+            'category_id' => ['required', 'integer', 'min:0'],
+            'price' => ['required', 'integer', 'min:0'],
+            'stock' => ['required', 'integer', 'min:0']
+        ]);
+
         $data;
         if ( ($request->filled('name')) & ($request->filled('category_id')) & ($request->filled('price')) & ($request->filled('stock')) ) {
             $data = $request->all();
@@ -80,7 +92,12 @@ class ResourceController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product'));
+        $category = Category::get();
+        
+        return view('product.edit', [
+            'product' => $product,
+            'category' => $category
+            ]);
     }
 
     /**
