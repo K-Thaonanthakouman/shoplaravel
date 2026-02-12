@@ -55,6 +55,7 @@
             <label for="active" class="block font-medium mb-1">Disponible</label>
             <input type="checkbox" name="active" id="active"
                    value=1
+                   {{ old('active', $product->active) ? 'checked' : '' }}
                    class="w-full border rounded px-3 py-2">
         </div>
 

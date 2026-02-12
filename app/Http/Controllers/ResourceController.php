@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\MessageBag;
 
 class ResourceController extends Controller
 {
@@ -34,16 +36,17 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'unique:products', 'max:255'],
-            'category_id' => ['required', 'integer', 'min:0'],
-            'price' => ['required', 'integer', 'min:0'],
-            'stock' => ['required', 'integer', 'min:0']
-        ]);
-
         $data;
-        if ( ($request->filled('name')) & ($request->filled('category_id')) & ($request->filled('price')) & ($request->filled('stock')) ) {
-            $data = $request->all();
+
+        // if ( ($request->filled('name')) & ($request->filled('category_id')) & ($request->filled('price')) & ($request->filled('stock')) ) {
+            $data = $request->validate([
+            'name' => ['required', 'unique:products', 'max:255'],
+            'category_id' => ['required', 'integer', 'min:1'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'stock' => ['required', 'integer', 'min:0'],
+            'description' => ['nullable', 'string'],
+            'active' => ['boolean']
+            ]);
 
             if ( $request->has('active') ){
                 $data['active'] = true;
@@ -69,13 +72,13 @@ class ResourceController extends Controller
             return redirect()->route('index')
                 ->with('success', 'Produit ajouté dans le catalogue !');
             
-        }
+        // // }
 
-        else{
-            return back()
-                ->withInput()
-                ->with('error', 'Erreur, produit non ajouté.');
-        }
+        // else{
+        //     return back()
+        //         ->withInput()
+        //         ->with('error', 'Erreur, produit non ajouté.');
+        // }
 
     }
 
