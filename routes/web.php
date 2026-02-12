@@ -45,4 +45,23 @@ use App\Http\Controllers\CategoryController;
 Route::get('/category/{id}', [CategoryController::class, 'show'])
     ->name('category.show');
 
+
+
+use App\Http\Controllers\CartController;
+
+Route::get('/cart/index', [CartController::class, 'show'])
+    ->name('cart.index');
+
+Route::post('/cart/add', [CartController::class, 'add'])
+    ->name('cart.add');
+
+Route::patch('/cart/update', [CartController::class, 'update'])
+    ->name('cart.update');
+
+Route::delete('/cart/remove', [CartController::class, 'remove'])
+    ->name('cart.remove');
+
+Route::delete('/cart/destroy', [CartController::class, 'destroy'])
+    ->name('cart.destroy');
+
 ?>
